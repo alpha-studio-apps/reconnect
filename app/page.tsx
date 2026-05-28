@@ -44,7 +44,7 @@ export default function LandingPage() {
             <h1 className="text-display-xl text-ink mb-6">
               Catorce días.<br />
               Solo{" "}
-              <span className="accent-underline">tú.</span>
+              <span className="accent-underline">vos.</span>
             </h1>
           </Reveal>
 
