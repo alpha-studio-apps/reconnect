@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" fill="none">
+  <rect width="512" height="512" rx="96" fill="#0B0B0F"/>
+  <rect x="1" y="1" width="510" height="510" rx="95" stroke="rgba(255,255,255,0.08)" stroke-width="2"/>
+  <!-- Ambient glow -->
+  <radialGradient id="glow" cx="30%" cy="20%" r="60%">
+    <stop offset="0%" stop-color="#8FB4A8" stop-opacity="0.15"/>
+    <stop offset="100%" stop-color="#8FB4A8" stop-opacity="0"/>
+  </radialGradient>
+  <rect width="512" height="512" rx="96" fill="url(#glow)"/>
+  <!-- Letter R in Fraunces style - simplified serif R -->
+  <text x="256" y="320" text-anchor="middle" font-family="Georgia, serif" font-size="240" font-weight="300" fill="#F4F2EE" opacity="0.95">R</text>
+</svg>

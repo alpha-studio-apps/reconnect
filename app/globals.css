@@ -1,26 +1,301 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/* ─── Alpha Track DNA — Design Tokens ────────────────────────────────────── */
+
+@theme {
+  /* Surfaces — near-pure black, like Alpha Track */
+  --color-page:       #080808;
+  --color-raised:     #0F0F0F;
+  --color-card:       #111111;
+  --color-card-hover: #171717;
+
+  /* Text */
+  --color-ink:        #FFFFFF;
+  --color-muted:      #9CA3AF;
+  --color-dim:        #6B7280;
+  --color-ghost:      #374151;
+
+  /* Accent — Alpha Track vivid green */
+  --color-sage:       #00C896;
+  --color-sage-soft:  #00A87A;
+
+  /* Typography */
+  --font-sans:   var(--font-inter), system-ui, -apple-system, sans-serif;
+  --font-serif:  var(--font-fraunces), Georgia, "Times New Roman", serif;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+/* ─── Base ───────────────────────────────────────────────────────────────── */
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+*, *::before, *::after { box-sizing: border-box; }
+
+html {
+  font-family: var(--font-sans);
+  color-scheme: dark;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #080808;
+  color: #FFFFFF;
+  min-height: 100dvh;
+  position: relative;
+}
+
+/* Subtle green ambient glow — Alpha Track signature */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 55% 40% at 10% -10%, rgba(0, 200, 150, 0.06) 0%, transparent 65%),
+    radial-gradient(ellipse 35% 30% at 90% 110%, rgba(0, 168, 122, 0.03) 0%, transparent 55%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+body > * { position: relative; z-index: 1; }
+
+/* ─── Typography Scale ───────────────────────────────────────────────────── */
+
+/* Alpha Track style: bold sans-serif for big impact */
+.text-display-xl {
+  font-family: var(--font-sans);
+  font-size: clamp(2.75rem, 7vw, 5rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+  font-weight: 800;
+}
+
+.text-display-lg {
+  font-family: var(--font-sans);
+  font-size: clamp(2rem, 4.5vw, 3.5rem);
+  line-height: 1.08;
+  letter-spacing: -0.025em;
+  font-weight: 700;
+}
+
+.text-display-md {
+  font-family: var(--font-sans);
+  font-size: clamp(1.5rem, 3vw, 2.25rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  font-weight: 700;
+}
+
+/* Fraunces serif — used for reflection prompts only */
+.text-serif-lg {
+  font-family: var(--font-serif);
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  line-height: 1.25;
+  letter-spacing: -0.015em;
+  font-weight: 300;
+  font-variation-settings: "opsz" 48;
+}
+
+.text-serif-md {
+  font-family: var(--font-serif);
+  font-size: 1.125rem;
+  line-height: 1.65;
+  font-weight: 300;
+  font-variation-settings: "opsz" 36;
+}
+
+.text-body-lg { font-size: 1.125rem; line-height: 1.7; }
+.text-body    { font-size: 1rem;     line-height: 1.65; }
+.text-caption { font-size: 0.8125rem; line-height: 1.5; letter-spacing: 0.02em; }
+
+/* Alpha Track accent word — vivid green text */
+.text-accent { color: #00C896; }
+
+/* Alpha Track underline accent — used on hero headline keyword */
+.accent-underline {
+  position: relative;
+  color: #00C896;
+}
+.accent-underline::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 100%;
+  height: 3px;
+  background: #00C896;
+  border-radius: 2px;
+}
+
+/* ─── Cards ──────────────────────────────────────────────────────────────── */
+
+.card {
+  background: #111111;
+  border-radius: 1rem;
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  box-shadow:
+    0 1px 0 0 rgba(255, 255, 255, 0.03) inset,
+    0 8px 32px -8px rgba(0, 0, 0, 0.6);
+  transition: background 0.15s ease, border-color 0.15s ease;
+}
+
+.card-hover:hover {
+  background: #171717;
+  border-color: rgba(255, 255, 255, 0.11);
+}
+
+/* ─── Buttons ─────────────────────────────────────────────────────────────── */
+
+/* Primary — Alpha Track white/solid CTA */
+.btn-primary {
+  background: #FFFFFF;
+  color: #080808;
+  font-weight: 700;
+  font-size: 0.9375rem;
+  letter-spacing: -0.01em;
+  padding: 0.8125rem 1.75rem;
+  border-radius: 0.625rem;
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.12s ease, box-shadow 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+}
+
+.btn-primary:hover {
+  background: #F0FFF9;
+  box-shadow: 0 0 32px 0 rgba(0, 200, 150, 0.15);
+  transform: translateY(-1px);
+}
+
+.btn-primary:active { transform: translateY(0); }
+
+/* Green variant — for actions inside the app */
+.btn-green {
+  background: #00C896;
+  color: #080808;
+  font-weight: 700;
+  font-size: 0.9375rem;
+  letter-spacing: -0.01em;
+  padding: 0.8125rem 1.75rem;
+  border-radius: 0.625rem;
+  border: none;
+  cursor: pointer;
+  transition: background 0.15s ease, transform 0.12s ease, box-shadow 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+}
+
+.btn-green:hover {
+  background: #00DCA7;
+  box-shadow: 0 0 32px 0 rgba(0, 200, 150, 0.25);
+  transform: translateY(-1px);
+}
+
+.btn-ghost {
+  background: transparent;
+  color: #9CA3AF;
+  font-size: 0.9375rem;
+  font-weight: 500;
+  padding: 0.75rem 1.25rem;
+  border-radius: 0.625rem;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  cursor: pointer;
+  transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  white-space: nowrap;
+}
+
+.btn-ghost:hover {
+  background: rgba(255, 255, 255, 0.05);
+  color: #FFFFFF;
+  border-color: rgba(255, 255, 255, 0.20);
+}
+
+/* ─── Status badges — Alpha Track style ─────────────────────────────────── */
+
+.badge-done    { color: #00C896; font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.08em; }
+.badge-pending { color: #6B7280; font-size: 0.6875rem; font-weight: 600; letter-spacing: 0.08em; }
+.badge-failed  { color: #F87171; font-size: 0.6875rem; font-weight: 700; letter-spacing: 0.08em; }
+
+/* ─── Form Elements ───────────────────────────────────────────────────────── */
+
+.field-input {
+  width: 100%;
+  background: #0F0F0F;
+  border: 1px solid rgba(255, 255, 255, 0.09);
+  border-radius: 0.625rem;
+  padding: 0.875rem 1.125rem;
+  color: #FFFFFF;
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  line-height: 1.5;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.field-input::placeholder { color: #6B7280; }
+
+.field-input:focus {
+  border-color: rgba(0, 200, 150, 0.45);
+  box-shadow: 0 0 0 3px rgba(0, 200, 150, 0.08);
+}
+
+.field-textarea { resize: vertical; min-height: 160px; }
+
+/* ─── Layout ──────────────────────────────────────────────────────────────── */
+
+.section { padding-block: clamp(4rem, 10vw, 8rem); }
+
+.container {
+  width: 100%;
+  max-width: 1120px;
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 5vw, 3rem);
+}
+
+.container-narrow {
+  width: 100%;
+  max-width: 680px;
+  margin-inline: auto;
+  padding-inline: clamp(1.25rem, 5vw, 3rem);
+}
+
+/* ─── Progress — Alpha Track style ─────────────────────────────────────── */
+
+.progress-track {
+  height: 3px;
+  background: rgba(255, 255, 255, 0.08);
+  border-radius: 3px;
+  overflow: hidden;
+}
+
+.progress-fill {
+  height: 100%;
+  background: #00C896;
+  border-radius: 3px;
+  transition: width 0.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ─── Divider ─────────────────────────────────────────────────────────────── */
+
+.divider { width: 100%; height: 1px; background: rgba(255, 255, 255, 0.07); }
+
+/* ─── Scrollbar ───────────────────────────────────────────────────────────── */
+
+::-webkit-scrollbar { width: 5px; height: 5px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.08); border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255, 255, 255, 0.14); }
+
+::selection { background: rgba(0, 200, 150, 0.25); color: #FFFFFF; }
+
+:focus-visible {
+  outline: 2px solid rgba(0, 200, 150, 0.65);
+  outline-offset: 2px;
+  border-radius: 4px;
 }
