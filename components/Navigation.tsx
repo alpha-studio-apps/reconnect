@@ -45,14 +45,14 @@ export function Navigation({ variant = "landing", userName }: NavigationProps) {
             <>
               <Link
                 href="#que"
-                className="text-caption font-medium"
+                className="hidden sm:block text-caption font-medium"
                 style={{ color: "#6B7280" }}
               >
                 Qué es
               </Link>
               <Link
                 href="#como"
-                className="text-caption font-medium"
+                className="hidden sm:block text-caption font-medium"
                 style={{ color: "#6B7280" }}
               >
                 {t.landing.ctaSecondary}

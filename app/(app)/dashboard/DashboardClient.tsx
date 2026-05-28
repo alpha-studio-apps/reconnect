@@ -74,25 +74,27 @@ export function DashboardClient({
           </p>
 
           {/* Day themes preview */}
-          <div className="grid grid-cols-7 gap-2 mb-10">
-            {programDays.map((d, i) => (
-              <div
-                key={d.day}
-                className="flex flex-col items-center gap-1 py-3"
-                style={{ opacity: 0.3 + i * 0.05 }}
-              >
+          <div className="overflow-x-auto -mx-4 px-4 mb-10">
+            <div className="grid grid-cols-7 gap-2" style={{ minWidth: "380px" }}>
+              {programDays.map((d, i) => (
                 <div
-                  className="w-1.5 h-1.5 rounded-full"
-                  style={{ background: "#3A3845" }}
-                />
-                <span
-                  className="text-[9px] text-center leading-tight"
-                  style={{ color: "#3A3845" }}
+                  key={d.day}
+                  className="flex flex-col items-center gap-1 py-3"
+                  style={{ opacity: 0.3 + i * 0.05 }}
                 >
-                  {t.themes[i]}
-                </span>
-              </div>
-            ))}
+                  <div
+                    className="w-1.5 h-1.5 rounded-full"
+                    style={{ background: "#3A3845" }}
+                  />
+                  <span
+                    className="text-[9px] text-center leading-tight"
+                    style={{ color: "#3A3845" }}
+                  >
+                    {t.themes[i]}
+                  </span>
+                </div>
+              ))}
+            </div>
           </div>
 
           <Button
@@ -197,7 +199,7 @@ export function DashboardClient({
         <p className="text-caption text-dim mb-4">
           {t.dashboard.overviewLabel}
         </p>
-        <div className="grid grid-cols-7 gap-2">
+        <div className="grid grid-cols-2 sm:grid-cols-7 gap-2">
           {programDays.map((d) => (
             <DayCard
               key={d.day}

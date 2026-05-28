@@ -57,14 +57,14 @@ export default function LandingPage() {
           </Reveal>
 
           <Reveal delay={0.22}>
-            <div className="flex flex-wrap gap-4">
-              <Link href="/signup">
-                <button className="btn-primary">
+            <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+              <Link href="/signup" className="w-full sm:w-auto">
+                <button className="btn-primary w-full sm:w-auto justify-center">
                   Comenzar tu camino →
                 </button>
               </Link>
-              <Link href="#como">
-                <button className="btn-ghost">Cómo funciona</button>
+              <Link href="#como" className="w-full sm:w-auto">
+                <button className="btn-ghost w-full sm:w-auto justify-center">Cómo funciona</button>
               </Link>
             </div>
           </Reveal>
@@ -167,26 +167,28 @@ export default function LandingPage() {
             </p>
           </Reveal>
 
-          <div className="grid grid-cols-7 gap-2 mb-4">
-            {TEMAS.map((tema, i) => (
-              <Reveal key={tema} delay={i * 0.025}>
-                <div
-                  className="flex flex-col items-center gap-2 py-4 rounded-xl border transition-all duration-150"
-                  style={{
-                    borderColor: "rgba(255,255,255,0.05)",
-                    background: "rgba(255,255,255,0.02)",
-                  }}
-                >
-                  <span className="text-[10px]" style={{ color: "#374151" }}>{i + 1}</span>
-                  <span
-                    className="text-[10px] text-center leading-tight px-1"
-                    style={{ color: "#6B7280" }}
+          <div className="overflow-x-auto -mx-5 px-5 pb-2">
+            <div className="grid grid-cols-7 gap-2 mb-4" style={{ minWidth: "440px" }}>
+              {TEMAS.map((tema, i) => (
+                <Reveal key={tema} delay={i * 0.025}>
+                  <div
+                    className="flex flex-col items-center gap-2 py-4 rounded-xl border transition-all duration-150"
+                    style={{
+                      borderColor: "rgba(255,255,255,0.05)",
+                      background: "rgba(255,255,255,0.02)",
+                    }}
                   >
-                    {tema}
-                  </span>
-                </div>
-              </Reveal>
-            ))}
+                    <span className="text-[10px]" style={{ color: "#374151" }}>{i + 1}</span>
+                    <span
+                      className="text-[10px] text-center leading-tight px-1"
+                      style={{ color: "#6B7280" }}
+                    >
+                      {tema}
+                    </span>
+                  </div>
+                </Reveal>
+              ))}
+            </div>
           </div>
 
           <Reveal delay={0.18}>
@@ -238,7 +240,7 @@ export default function LandingPage() {
         className="py-8 border-t"
         style={{ borderColor: "rgba(255,255,255,0.06)" }}
       >
-        <div className="container flex items-center justify-between">
+        <div className="container flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-0">
           <span className="font-bold text-sm tracking-tight">Reconnect</span>
           <p className="text-caption" style={{ color: "#374151" }}>
             Una práctica tranquila para la reconexión.
